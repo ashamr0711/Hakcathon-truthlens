@@ -1,19 +1,71 @@
-import { motion } from "framer-motion";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Dashboard() {
+    const navigate = useNavigate();
+    const [hovered, setHovered] = useState(null);
+
+    const cardStyle = {
+        backgroundColor: "#fff",
+        borderRadius: "12px",
+        padding: "2rem",
+        boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+        width: "250px",
+        textAlign: "center",
+        cursor: "pointer",
+        transition: "transform 0.2s ease, box-shadow 0.2s ease",
+    };
+
+    const cardHover = {
+        transform: "translateY(-5px)",
+        boxShadow: "0 8px 18px rgba(0, 0, 0, 0.15)",
+    };
+
+    const cards = [
+        { title: "Text Upload", path: "/text-upload", emoji: "📝" },
+        { title: "Image Upload", path: "/image-upload", emoji: "🖼️" },
+        { title: "Video Upload", path: "/video-upload", emoji: "🎥" },
+    ];
+
     return (
-        <motion.div
-            className="text-center py-16"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+        <div
+            style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                padding: "3rem 1rem",
+                minHeight: "100vh",
+                backgroundColor: "#f4f5ff",
+            }}
         >
-            <h2 className="text-3xl font-bold mb-8">Choose Detection Type</h2>
-            <div className="flex justify-center gap-6">
-                <a href="/text-upload" className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600">Text Upload</a>
-                <a href="/image-upload" className="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600">Image Upload</a>
-                <a href="/video-upload" className="bg-purple-500 text-white px-6 py-3 rounded-lg hover:bg-purple-600">Video Upload</a>
+            <h1 style={{ fontSize: "2rem", color: "#333", marginBottom: "2rem" }}>
+                Choose Detection Type
+            </h1>
+
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    gap: "2rem",
+                    flexWrap: "wrap",
+                }}
+            >
+                {cards.map((card, index) => (
+                    <div
+                        key={index}
+                        style={{
+                            ...cardStyle,
+                            ...(hovered === index ? cardHover : {}),
+                        }}
+                        onMouseEnter={() => setHovered(index)}
+                        onMouseLeave={() => setHovered(null)}
+                        onClick={() => navigate(card.path)} // 👈 This triggers the page change
+                    >
+                        <div style={{ fontSize: "3rem" }}>{card.emoji}</div>
+                        <h3 style={{ color: "#6f63ff", marginTop: "1rem" }}>{card.title}</h3>
+                    </div>
+                ))}
             </div>
-        </motion.div>
+        </div>
     );
 }

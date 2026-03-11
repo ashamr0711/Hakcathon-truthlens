@@ -1,23 +1,17 @@
-// AuthContext.js
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useContext, useState } from "react";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [isRegistered, setIsRegistered] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [user, setUser] = useState(null); // Store user info like name, avatar etc
+    const [user, setUser] = useState(null);
 
-    const register = (userInfo) => {
-        setIsRegistered(true);
-        // save user info if needed
-    };
-
+    const register = (userInfo) => setIsRegistered(true);
     const login = (userInfo) => {
         setIsLoggedIn(true);
         setUser(userInfo);
     };
-
     const logout = () => {
         setIsLoggedIn(false);
         setIsRegistered(false);

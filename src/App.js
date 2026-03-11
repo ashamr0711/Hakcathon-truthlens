@@ -1,34 +1,38 @@
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useState } from "react";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
+import { AuthProvider } from "./AuthContext";  // <-- import the provider
 
 import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
-import About from "./pages/About";
+import Home from './pages/Home';
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import TextUpload from "./pages/TextUpload";
 import ImageUpload from "./pages/ImageUpload";
 import VideoUpload from "./pages/VideoUpload";
+import About from "./pages/About";
+import "./App.css";
 
 function App() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-
     return (
-        <Router>
-            <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/text-upload" element={<TextUpload />} />
-                <Route path="/image-upload" element={<ImageUpload />} />
-                <Route path="/video-upload" element={<VideoUpload />} />
-            </Routes>
-            <ToastContainer position="top-right" autoClose={2000} />
-        </Router>
+        <AuthProvider> {/* Wrap everything with AuthProvider */}
+            <Router>
+                <Navbar />
+                <div className="main-container">
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<Register />} />
+                        <Route path="/dashboard" element={<Dashboard />} />
+                        <Route path="/text-upload" element={<TextUpload />} />
+                        <Route path="/image-upload" element={<ImageUpload />} />
+                        <Route path="/video-upload" element={<VideoUpload />} />
+                        <Route path="/about" element={<About />} />
+                    </Routes>
+                </div>
+            </Router>
+        </AuthProvider>
     );
 }
 

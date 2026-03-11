@@ -1,0 +1,142 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+
+* {
+    box-sizing: border-box;
+}
+
+.app {
+    font-family: "Inter", sans-serif;
+    text-align: center;
+    padding: 40px;
+    min-height: 100vh;
+    transition: background 0.4s, color 0.4s;
+}
+
+.dark {
+    background: radial-gradient(circle at top left, #111, #000);
+    color: white;
+}
+
+.light {
+    background: linear-gradient(to bottom right, #f2f6ff, #ffffff);
+    color: #333;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.controls button {
+    margin-left: 10px;
+}
+
+button {
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: 600;
+    background-color: #007bff;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #0062d1;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.tagline {
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 25px;
+    margin: 20px auto;
+    border-radius: 20px;
+    max-width: 700px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+}
+
+textarea {
+    width: 100%;
+    height: 120px;
+    margin-top: 10px;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    resize: none;
+    font-size: 16px;
+}
+
+.loader {
+    margin-top: 15px;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #ccc;
+    border-top-color: #007bff;
+    border-radius: 50%;
+    margin: 10px auto;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.result {
+    margin-top: 20px;
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.history {
+    text-align: left;
+}
+
+.history-item {
+    background: rgba(255, 255, 255, 0.1);
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 0.95rem;
+}
